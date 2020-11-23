@@ -1,0 +1,10 @@
+[Unit]
+Description=Music Player Daemon Pulse Audio Sink Control
+After=mpd.service
+
+[Service]
+ExecStart=/usr/bin/mpd-pulse
+Restart=always
+
+[Install]
+WantedBy=default.target
