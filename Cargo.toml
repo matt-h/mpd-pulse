@@ -8,3 +8,5 @@ edition = "2018"
 
 [dependencies]
 rust-pulsectl = "0.2.6"
+config = "0.10.1"
+dirs = "3.0"

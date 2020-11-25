@@ -18,6 +18,14 @@ Copy `system/mpd-pulse.service` to `~/.config/systemd/user/mpd-pulse.service` an
 
 Install from the [AUR](https://aur.archlinux.org/packages/mpd-pulse/) and then start with systemd.
 
+## Configuration
+
+Config can be read from either `~/.config/mpd-pulse.conf` or `/etc/mpd-pulse.conf`.
+
+Both `device_name` and `mpd_name` are required.
+
+See [mpd-pulse.conf](config/mpd-pulse.conf) for an example.
+
 ## Starting with systemd
 
 Start the service.
