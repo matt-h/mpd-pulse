@@ -1,5 +1,4 @@
 use config::{Config, File, FileFormat};
-use dirs;
 use std::path::Path;
 use std::process::Command;
 
@@ -72,24 +71,23 @@ fn main() {
     let mut handler = SinkController::create();
 
     loop {
-        let device = handler.get_device_by_name(&device_name).ok();
-        if device.is_none() {
-            println!("Playback Device {} not found", device_name);
-            continue;
-        }
-        let applications = handler
-            .list_applications()
-            .expect("Error getting application list");
+        let device_result = handler.get_device_by_name(&device_name).ok();
+        if let Some(device) = device_result {
+            let applications = handler
+                .list_applications()
+                .expect("Error getting application list");
 
-        let mpd = applications
-            .iter()
-            .find(|&app| app.proplist.get_str("application.name").unwrap() == mpd_name);
-        if mpd.is_none() {
-            continue;
-        }
-        match handler.move_app_by_index(mpd.unwrap().index, device.unwrap().index) {
-            Err(_e) => continue,
-            _ => (),
+            let application = applications
+                .iter()
+                .find(|&app| app.proplist.get_str("application.name").unwrap() == mpd_name);
+            if let Some(mpd) = application {
+                if let Err(_e) =
+                    handler.move_app_by_index(mpd.index, device.index)
+                {
+                }
+            }
+        } else {
+            println!("Playback Device {} not found", device_name);
         }
 
         mpd_wait();
