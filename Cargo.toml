@@ -1,12 +1,12 @@
 [package]
 name = "mpd-pulse"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["matt"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rust-pulsectl = "0.2.6"
-config = "0.10.1"
-dirs = "3.0"
+rust-pulsectl-fork = "0.2.12"
+config = "0.11.0"
+dirs = "4.0"

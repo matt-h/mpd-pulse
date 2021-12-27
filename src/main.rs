@@ -68,7 +68,7 @@ fn main() {
         }
     };
 
-    let mut handler = SinkController::create();
+    let mut handler = SinkController::create().unwrap();
 
     loop {
         let device_result = handler.get_device_by_name(&device_name).ok();
